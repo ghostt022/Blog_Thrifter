@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ThrifterClothing Store</title>
+    <style>
+      body {
+        background-color: rgb(110, 110, 203);
+        margin: 10px;
+        font-family: "Montserrat", sans-serif;
+        display: flex;
+        flex-direction: column;
+        min-height: 100vh;
+      }
+
+      header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        background-color: rgb(110, 110, 203);
+        padding: 10px 50px;
+      }
+
+      .logo img {
+        height: 50px;
+      }
+
+      .shopping-bag {
+        cursor: pointer;
+        font-size: 24px;
+        height: 50px;
+        width: 30px;
+        position: relative;
+      }
+
+      .cart-count {
+        position: absolute;
+        top: 0;
+        right: 0;
+        background-color: red;
+        color: white;
+        border-radius: 50%;
+        padding: 0 5px;
+        font-size: 14px;
+      }
+
+      .product-display {
+        text-align: center;
+        margin: 50px auto;
+        width: 70%;
+        margin-left: 27%; /* Added margin to move the images to the right */
+      }
+
+      .product-display img {
+        width: 100%;
+        max-width: 500px;
+        height: auto;
+        cursor: pointer;
+      }
+
+      .product-name,
+      .product-price {
+        color: #ffffff;
+        margin-top: 5px;
+      }
+
+      .buy-button {
+        background-color: rgb(106, 190, 106);
+        box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
+        padding: 10px 20px;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        margin-top: 10px;
+      }
+
+      footer {
+        background-color: rgb(110, 110, 203);
+        color: #b4c5e6;
+        text-align: center;
+        padding: 20px 0;
+        font-size: 16px;
+        width: 100%;
+      }
+
+      footer a {
+        color: #b4c5e6;
+        text-decoration: none;
+      }
+
+      footer a:hover {
+        text-decoration: underline;
+      }
+
+      .grey-line {
+        width: 100%;
+        height: 1px;
+        background-color: #ccc;
+      }
+
+      .social-icon {
+        color: white;
+        text-decoration: none;
+        margin: 0 10px;
+        display: inline-flex;
+        align-items: center;
+      }
+
+      .social-icon i {
+        margin-right: 8px;
+      }
+
+      .social-icon:hover {
+        color: #f39c12;
+      }
+
+      .main-content {
+        margin-right: 270px;
+        padding: 20px;
+      }
+
+      .sidebar {
+        font-family: Arial, Helvetica, sans-serif;
+        color: white;
+        width: 250px;
+        background-color: #b0aed8;
+        padding: 20px;
+        position: fixed;
+        top: 0;
+        right: 0;
+        height: 100%;
+        border-left: 1px solid #ddd;
+        transform: translateX(100%);
+        transition: transform 0.3s ease-in-out;
+      }
+
+      .sidebar.open {
+        transform: translateX(0);
+      }
+
+      .sidebar h2 {
+        margin-top: 0;
+      }
+
+      .sidebar ul {
+        list-style-type: none;
+        padding: 0;
+      }
+
+      .sidebar ul li {
+        margin: 10px 0;
+        display: flex;
+        align-items: center;
+      }
+
+      .sidebar ul li img {
+        width: 50px;
+        height: 50px;
+        margin-right: 10px;
+      }
+
+      .sidebar ul li a {
+        text-decoration: none;
+        color: #302f2f;
+      }
+
+      .sidebar ul li a:hover {
+        text-decoration: underline;
+      }
+
+      .divider {
+        border-top: 1px solid rgb(228, 227, 227);
+        margin: 20px 0;
+      }
+
+      .shopping-bag {
+        position: fixed;
+        top: 20px;
+        right: 20px;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+      }
+
+      .shopping-bag img {
+        width: 30px;
+        height: 30px;
+      }
+
+      .cart-count {
+        background-color: red;
+        border-radius: 50%;
+        color: white;
+        padding: 5px 10px;
+        margin-left: 10px;
+      }
+
+      .add-to-cart {
+        font-weight: 600;
+        height: 50px;
+        width: 220px;
+        background-color: #447e63;
+        color: white;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 20px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+        margin: auto;
+        position: fixed;
+        bottom: 60px;
+        left: 50%;
+        transform: translateX(-50%);
+      }
+
+      .add-to-cart:hover {
+        background-color: #3a3a3a;
+        box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
+      }
+      .bag {
+        font-family: sans-serif;
+      }
+    </style>
+    <script>
+      function redirectToProductPage(url) {
+        window.open(url, "_blank");
+      }
+
+      function redirectToHomePage() {
+        window.location.href = "index.html";
+      }
+    </script>
+  </head>
+  <body>
+    <header>
+      <div class="logo" onclick="redirectToHomePage()">
+        <img src="thrifter2.png" alt="Store Logo" />
+      </div>
+      <div class="shopping-bag" onclick="toggleCart()">
+        <img src="shopping.png" alt="cart" />
+        <span class="cart-count" id="cartCount">0</span>
+      </div>
+    </header>
+    <br />
+    <div class="grey-line"></div>
+    <br />
+
+    <div class="main-content">
+      <div class="product-display">
+        <img src="jpg(1).png" alt="Product Image" />
+        <div>
+          <div class="product-name">'Dickies T-Shirt in White'</div>
+          <div class="product-price">1,390.00 ден</div>
+          <button
+            class="buy-button"
+            onclick="addToCart('jpg(1).png', 'Dickies T-Shirt in White', 1390)"
+          >
+            Додај во кошничка
+          </button>
+        </div>
+      </div>
+
+      <div class="product-display">
+        <img src="carhart.png" alt="Product Image" />
+        <div>
+          <div class="product-name">'Carhartt T-Shirt in Blue'</div>
+          <div class="product-price">2,290.00 ден</div>
+          <button
+            class="buy-button"
+            onclick="addToCart('carhart.png', 'Carhartt T-Shirt in Blue', 2290)"
+          >
+            Додај во кошничка
+          </button>
+        </div>
+      </div>
+
+      <div class="product-display">
+        <img src="dickiesblack.png" alt="Product Image" />
+        <div>
+          <div class="product-name">'Dickies T-Shirt in Black'</div>
+          <div class="product-price">1,390.00 ден</div>
+          <button
+            class="buy-button"
+            onclick="addToCart('dickiesblack.png', 'Dickies T-Shirt in Black', 1390)"
+          >
+            Додај во кошничка
+          </button>
+        </div>
+      </div>
+
+      <div class="product-display">
+        <img src="dickiesgrey.png" alt="Product Image" />
+        <div>
+          <div class="product-name">'Dickies T-Shirt in Grey'</div>
+          <div class="product-price">1,890.00 ден</div>
+          <button
+            class="buy-button"
+            onclick="addToCart('dickiesgrey.png', 'Dickies T-Shirt in Grey', 1890)"
+          >
+            Додај во кошничка
+          </button>
+        </div>
+      </div>
+
+      <div class="product-display">
+        <img src="obey.png" alt="Product Image" />
+        <div>
+          <div class="product-name">'Obey T-Shirt in White'</div>
+          <div class="product-price">2,290.00 ден</div>
+          <button
+            class="buy-button"
+            onclick="addToCart('obey.png', 'Obey T-Shirt in White', 2290)"
+          >
+            Додај во кошничка
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div class="sidebar" id="cartSidebar">
+      <p class="bag">КОШНИЧКА</p>
+      <div class="divider"></div>
+      <ul id="cartItems"></ul>
+      <div class="divider"></div>
+      <p>Total: $<span id="cartTotal">0</span></p>
+      <button class="add-to-cart">КОМПЛЕТИРАЈ НАРАЧКА</button>
+    </div>
+
+    <footer>
+      <p>© 2024 Thrifter.mk - All rights reserved.</p>
+      <p>Powered by: Aleksandar Darkovski.</p>
+      <p>
+        Email us at
+        <a href="mailto:support@thrifter.mk">support@thrifter.mk</a> or call us
+        at <a href="tel:+1234567890">+123 456 7890</a>
+      </p>
+      <p>
+        Follow us:
+        <a
+          href="https://www.instagram.com/thrifter.mk"
+          target="_blank"
+          class="social-icon"
+          ><i class="fab fa-instagram"></i> Instagram</a
+        >
+        |
+        <a
+          href="https://www.facebook.com/thrifter.mk"
+          target="_blank"
+          class="social-icon"
+          ><i class="fab fa-facebook-f"></i> Facebook</a
+        >
+      </p>
+    </footer>
+    <script>
+      let cartTotal = 0;
+      const cartItems = [];
+      const cartCountElement = document.getElementById("cartCount");
+      const cartTotalElement = document.getElementById("cartTotal");
+      const cartItemsList = document.getElementById("cartItems");
+
+      function toggleCart() {
+        document.getElementById("cartSidebar").classList.toggle("open");
+      }
+
+      function addToCart(imageSrc, name, price) {
+        cartTotal += price;
+        cartItems.push({ imageSrc, name, price });
+        updateCart();
+      }
+
+      function formatPrice(price) {
+        return new Intl.NumberFormat("mk-MK", {
+          style: "currency",
+          currency: "MKD",
+        }).format(price);
+      }
+
+      function updateCart() {
+        cartItemsList.innerHTML = "";
+        cartItems.forEach((item, index) => {
+          const li = document.createElement("li");
+          const img = document.createElement("img");
+          img.src = item.imageSrc;
+          img.alt = item.name;
+
+          const text = document.createElement("span");
+          text.textContent = `${item.name} - ${formatPrice(item.price)}`;
+
+          li.appendChild(img);
+          li.appendChild(text);
+          cartItemsList.appendChild(li);
+        });
+        cartTotalElement.textContent = formatPrice(cartTotal);
+        cartCountElement.textContent = cartItems.length;
+      }
+    </script>
+  </body>
+</html>

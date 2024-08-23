@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Thrifter</title>
+  <link rel="stylesheet" href="styles.css"/>
+</head>
+<body>
+  <style>
+    body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        background-color: rgb(109, 138, 198);
+    }
+    nav {
+        background-color: rgb(64, 86, 129);
+        padding: 10px;
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        box-shadow: 0 0 10px rgb(109, 138, 198);;
+    }
+
+    ul {
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+        overflow: hidden;
+        display: flex;
+    }
+
+    li {
+        margin-right: 20px;
+    }
+
+    a {
+        display: block;
+        color: white;
+        text-align: center;
+        padding: 14px 16px;
+        text-decoration: none;
+        border-radius: 5px;
+        transition: background-color 0.3s;
+    }
+
+    a:hover {
+        background-color: #555;
+    }
+
+    .small-photo {
+            width: 200px;
+            height: 165px;
+            border-radius: 100%;
+            margin-right: -260px;
+        }
+
+        
+       
+
+
+
+    </style>
+</head>
+<body>
+<nav>
+    <ul>
+        <li><a href="#second-hand">Second Hand</a></li>
+        <li><a href="#brand-new">Brand New</a></li>
+        <li><a href="#brands">Brands</a></li>
+    </ul>
+    <img class="small-photo" src="photos/thrifter.jpg" alt="Small Photo">
+</nav>
+
+<div class="container">
+  <img src="photos/result.png" alt="Thrift Shop Image">
+  
+  <p class="thrift-shop-description">
+    <br><strong>Item Available:</strong><br>
+<span>Condition:Brand New</span><br>
+    <span>Brand: Dickies</span><br>
+    <span>Price: 25$/1500ден</span><br>
+    <span>Color:White</span><br>
+    <a href="#" class="add-to-cart-box">Додади во кошничка</a>
+  </div>
+
+  <div class="container">
+    <img src="photos/dic2.png" alt="Thrift Shop Image">
+    
+    <p class="thrift-shop-description2">
+      <br><strong>Item Available:</strong><br>
+  <span>Condition:Brand New</span><br>
+      <span>Brand: Dickies</span><br>
+      <span>Price: 25$/1500ден</span><br>
+      <span>Color:White</span><br>
+      <a href="#" class="add-to-cart-box">Додади во кошничка</a>
+    </div>
+  
+
+    <div class="container">
+      <img src="photos/d3.png" alt="Thrift Shop Image">
+      
+      <p class="thrift-shop-description3">
+        <br><strong>Item Available:</strong><br>
+    <span>Condition:Brand New</span><br>
+        <span>Brand: Dickies</span><br>
+        <span>Price: 25$/1500ден</span><br>
+        <span>Color:Grey</span><br>
+        <a href="#" class="add-to-cart-box">Додади во кошничка</a>
+  
+      </div>
+</body>
+</html>
+
+----------------------------------------------------------------------------------------------------------------------------------------------
+
+
+
+

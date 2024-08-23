@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>thrifter.mk - Buy Base Option</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+    />
+    <!-- Linking Montserrat font -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      body {
+        background-color: rgb(110, 110, 203);
+        margin: 10px;
+        font-family: "Montserrat", sans-serif;
+        display: flex;
+        flex-direction: column;
+        min-height: 100vh;
+      }
+
+      header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        background-color: rgb(110, 110, 203);
+        padding: 10px 50px;
+      }
+      .logo {
+        order: 0; /* Move logo to the second position */
+      }
+
+      .logo img {
+        height: 50px;
+      }
+
+      .shopping-bag {
+        cursor: pointer;
+        font-size: 24px;
+        height: 50px;
+        width: 30px;
+        position: relative;
+      }
+      .cart-count {
+        position: absolute;
+        top: 0;
+        right: 0;
+        background-color: red;
+        color: white;
+        border-radius: 50%;
+        padding: 0 5px;
+        font-size: 14px;
+      }
+      .grey-line {
+        width: 100%;
+        height: 1px;
+        background-color: #ccc;
+      }
+
+      .main-content {
+        background-color: rgb(110, 110, 203);
+        padding: 20px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-grow: 1;
+      }
+
+      .product-details {
+        display: flex;
+        align-items: center;
+      }
+
+      .product-image {
+        margin-right: 100px;
+      }
+
+      .product-image img {
+        width: 500px;
+      }
+
+      .product-info {
+        color: white;
+      }
+
+      .size-charts {
+        margin-top: 20px;
+      }
+
+      .tool {
+        border: 1px solid gray;
+        font-weight: 600;
+        background-color: white;
+        color: #447e63;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+        margin-right: 10px;
+        margin-bottom: 10px;
+      }
+
+      .tool:hover {
+        background-color: rgb(231, 221, 221);
+        box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
+      }
+
+      .quantity-and-cart {
+        display: flex;
+        align-items: center;
+        gap: 10px; /* Adjusts the space between the elements */
+      }
+
+      .quantity-selector {
+        background: white;
+        display: inline-flex;
+        align-items: center;
+        padding: 5px 10px;
+        border: 1px solid rgb(134, 134, 134); /* Adding border color */
+        border-radius: 20px;
+        margin-bottom: 20px;
+        margin-right: 10px; /* Ensures spacing between the quantity selector and the add-to-cart button */
+      }
+
+      .quantity-button {
+        font-weight: 600;
+        background-color: white;
+        color: gray; /* Set text color to gray */
+        padding: 10px;
+        border: 1px solid gray; /* Adding border color */
+        border: none; /* Remove border */
+        border-radius: 5px;
+        cursor: pointer;
+        transition: color 0.3s ease; /* Transition for text color only */
+      }
+
+      .quantity-button:hover {
+        color: black; /* Change text color to black on hover */
+      }
+
+      #quantity {
+        width: 30px;
+        text-align: center;
+        font-size: 16px;
+        font-weight: bold;
+        margin: 0 10px;
+        color: #447e63;
+      }
+      .add-to-cart {
+        font-weight: 600;
+        height: 50px;
+        width: 220px;
+        background-color: #447e63;
+        color: white;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 20px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+        margin-bottom: 20px;
+      }
+
+      .add-to-cart:hover {
+        background-color: #3a3a3a;
+        box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
+      }
+
+      footer {
+        color: #b4c5e6;
+        background-color: rgb(110, 110, 203);
+        text-align: center;
+        padding: 20px 0;
+        font-size: 15px;
+        margin-top: auto;
+        width: 100%;
+      }
+
+      footer a {
+        color: #b4c5e6;
+        text-decoration: none;
+      }
+
+      footer a:hover {
+        text-decoration: underline;
+      }
+
+      .social-icon {
+        color: white;
+        text-decoration: none;
+        margin: 0 10px;
+        display: inline-flex;
+        align-items: center;
+      }
+
+      .social-icon i {
+        margin-right: 8px;
+      }
+
+      .social-icon:hover {
+        color: #f39c12;
+      }
+
+      .logo {
+        cursor: pointer;
+      }
+      .price {
+        text-align: left;
+        font-weight: bold;
+      }
+      .brand {
+        text-align: left;
+        font-weight: bold;
+      }
+    </style>
+    <script>
+      function redirectToProductPage(url) {
+        window.open(url, "_blank");
+      }
+
+      function redirectToHomePage() {
+        window.location.href = "index.html";
+      }
+
+      function increaseQuantity() {
+        var quantitySpan = document.getElementById("quantity");
+        var currentQuantity = parseInt(quantitySpan.textContent);
+        quantitySpan.textContent = currentQuantity + 1;
+      }
+
+      function decreaseQuantity() {
+        var quantitySpan = document.getElementById("quantity");
+        var currentQuantity = parseInt(quantitySpan.textContent);
+        if (currentQuantity > 1) {
+          quantitySpan.textContent = currentQuantity - 1;
+        }
+      }
+    </script>
+  </head>
+  <body>
+    <header>
+      <div class="logo" onclick="redirectToHomePage()">
+        <!-- Added onclick attribute here -->
+        <img src="thrifter2.png" alt="Store Logo" />
+      </div>
+      <div class="shopping-bag" onclick="openCart()">
+        <img src="shopping.png" alt="cart" />
+        <span class="cart-count">0</span>
+      </div>
+    </header>
+    <div class="grey-line"></div>
+    <br />
+    <!-- Middle Section -->
+    <div class="middle-section"></div>
+
+    <!-- Main Content Section -->
+    <div class="main-content">
+      <div class="product-details">
+        <div class="product-image">
+          <img src="obey.png" alt="Product Image" />
+        </div>
+        <div class="product-info">
+          <h2>'Obey T-Shirt in White'</h2>
+          <p>
+            Obey Clothing (stylized as OBEY) is a clothing company founded in
+            2001 by street artist and illustrator Shepard Fairey as an extension
+            to his work in activism. The company appropriates themes and images
+            used in its clothing from the John Carpenter film They Live.
+          </p>
+          <p class="brand">Brand New</p>
+          <p class="price">2,290.00ден</p>
+          <div class="size-charts">
+            <button class="tool">S</button>
+            <button class="tool">M</button>
+            <button class="tool">L</button>
+            <button class="tool">XL</button>
+          </div>
+          <div class="quantity-selector">
+            <button class="quantity-button" onclick="decreaseQuantity()">
+              -
+            </button>
+            <span id="quantity">1</span>
+            <button class="quantity-button" onclick="increaseQuantity()">
+              +
+            </button>
+          </div>
+          <button class="add-to-cart">ДОДАДИ ВО КОШНИЧКА</button>
+        </div>
+      </div>
+    </div>
+    <div class="grey-line"></div>
+    <footer>
+      <p>© 2024 Thrifter.mk - All rights reserved.</p>
+      <p>Powered by: Aleksandar Darkovski.</p>
+      <p>
+        Email us at
+        <a href="mailto:support@thrifter.mk">support@thrifter.mk</a> or call us
+        at <a href="tel:+1234567890">+123 456 7890</a>
+      </p>
+      <p>
+        Follow us:
+        <a
+          href="https://www.instagram.com/thrifter.mk"
+          target="_blank"
+          class="social-icon"
+          ><i class="fab fa-instagram"></i> Instagram</a
+        >
+        |
+        <a
+          href="https://www.facebook.com/thrifter.mk"
+          target="_blank"
+          class="social-icon"
+          ><i class="fab fa-facebook-f"></i> Facebook</a
+        >
+      </p>
+    </footer>
+  </body>
+</html>

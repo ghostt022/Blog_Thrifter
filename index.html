@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>thrifter.mk</title>
+    <link rel="stylesheet" href="styles.css" />
+
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+    />
+
+    <script>
+      function redirectToProductPage(url) {
+        window.open(url, "_blank");
+      }
+
+      function redirectToHomePage() {
+        window.location.href = "index.html";
+      }
+    </script>
+  </head>
+  <body>
+    <header>
+      <div class="logo" onclick="redirectToHomePage()">
+        <img src="thrifter2.png" alt="Store Logo" />
+      </div>
+      <div class="shopping-bag" onclick="openCart()">
+        <img src="shopping.png" alt="cart" />
+        <span class="cart-count">0</span>
+      </div>
+    </header>
+    <br />
+    <div class="grey-line"></div>
+    <br />
+
+    <div class="product-display">
+      <img
+        src="jpg(1).png"
+        alt="Product Image"
+        width="500"
+        onclick="redirectToProductPage('product1.html')"
+      />
+      <div class="product-name">'Dickies T-Shirt in White'</div>
+      <div class="product-price">1,390.00 ден</div>
+      <button
+        class="buy-button"
+        onclick="addToCart('Dickies T-Shirt in White', 1390)"
+      >
+        Додај во кошничка
+      </button>
+    </div>
+
+    <div class="product-display">
+      <img
+        src="carhart.png"
+        alt="Product Image"
+        width="500"
+        onclick="redirectToProductPage('product2.html')"
+      />
+      <div class="product-name">'Carhartt T-Shirt in Blue'</div>
+      <div class="product-price">2,290.00 ден</div>
+      <button
+        class="buy-button"
+        onclick="addToCart('Carhartt T-Shirt in Blue', 2290)"
+      >
+        Додај во кошничка
+      </button>
+    </div>
+
+    <div class="product-display">
+      <img
+        src="dickiesblack.png"
+        alt="Product Image"
+        width="500"
+        onclick="redirectToProductPage('product3.html')"
+      />
+      <div class="product-name">'Dickies T-Shirt in Black'</div>
+      <div class="product-price">1,390.00 ден</div>
+      <button
+        class="buy-button"
+        onclick="addToCart('Dickies T-Shirt in Black', 1390)"
+      >
+        Додај во кошничка
+      </button>
+    </div>
+
+    <div class="product-display">
+      <img
+        src="dickiesgrey.png"
+        alt="Product Image"
+        width="500"
+        onclick="redirectToProductPage('product4.html')"
+      />
+      <div class="product-name">'Dickies T-Shirt in Grey'</div>
+      <div class="product-price">1,890.00 ден</div>
+      <button
+        class="buy-button"
+        onclick="addToCart('Dickies T-Shirt in Grey', 1890)"
+      >
+        Додај во кошничка
+      </button>
+    </div>
+
+    <div class="product-display">
+      <img
+        src="obey.png"
+        alt="Product Image"
+        width="500"
+        onclick="redirectToProductPage('product5.html')"
+      />
+      <div class="product-name">'Obey T-Shirt in White'</div>
+      <div class="product-price">2,290.00 ден</div>
+      <button
+        class="buy-button"
+        onclick="addToCart('Obey T-Shirt in White', 2290)"
+      >
+        Додај во кошничка
+      </button>
+    </div>
+
+    <footer>
+      <p>© 2024 Thrifter.mk - All rights reserved.</p>
+      <p>Powered by: Aleksandar Darkovski.</p>
+      <p>
+        Email us at
+        <a href="mailto:support@thrifter.mk">support@thrifter.mk</a> or call us
+        at <a href="tel:+1234567890">+123 456 7890</a>
+      </p>
+      <p>
+        Follow us:
+        <a
+          href="https://www.instagram.com/thrifter.mk"
+          target="_blank"
+          class="social-icon"
+          ><i class="fab fa-instagram"></i> Instagram</a
+        >
+        |
+        <a
+          href="https://www.facebook.com/thrifter.mk"
+          target="_blank"
+          class="social-icon"
+          ><i class="fab fa-facebook-f"></i> Facebook</a
+        >
+      </p>
+    </footer>
+  </body>
+</html>
